@@ -1,0 +1,13 @@
+#premiumInput {
+  margin: 20px 20px;
+  width:50%;
+  border: 2px solid blue;
+  float: left;
+}
+
+#premiumOutput {
+  margin: 20px 0;
+  width:40%;
+  border: 2px solid blue;
+  float: left;
+}

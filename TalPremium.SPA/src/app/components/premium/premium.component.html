@@ -1,0 +1,85 @@
+<!-- Premium Input Details -->
+<div id="premiumInput" class="well">
+  <h3 style="text-align:center">Premium Calculator</h3>
+  <form #f="ngForm" (ngSubmit)="onSubmit()">
+    <!-- Name -->
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input 
+        type="text"
+        name="name"
+        id="name"
+        class="form-control"
+        [(ngModel)]="userData.name"
+        #name="ngModel"
+        required
+        >
+        <!-- Display error if name field is not entered -->
+        <div *ngIf="name.touched && name.errors">
+          <div *ngIf="name.errors.required" class="alert alert-danger">
+            Name field is required
+          </div>
+        </div>
+    </div>
+
+    <!-- BirthDate -->
+    <div class="form-group">
+      <label for="birthDate">Birth Date</label>
+      <input
+        type="date" 
+        name="birthDate" 
+        id="birthDate" 
+        class="form-control"
+        [(ngModel)]="userData.birthDate"
+        #birthDate="ngModel"
+        required
+        >
+        <!-- Display error if BirthDate field is not entered -->
+        <div *ngIf="birthDate.touched && birthDate.errors">
+          <div *ngIf="birthDate.errors.required" class="alert alert-danger">
+              BirthDate field is required
+          </div>
+        </div>
+    </div>
+
+    <!-- Gender -->
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <select 
+        name="gender" 
+        id="gender" 
+        class="form-control"
+        [(ngModel)]="userData.isMale"
+        #gender="ngModel"
+        required
+        >
+        <option value="">Select</option>
+        <option value="true">Male</option>
+        <option value="false">Female</option>
+      </select>
+        <!-- Display error if Gender field is not entered -->
+        <div *ngIf="gender.touched && gender.errors">
+          <div *ngIf="gender.errors.required" class="alert alert-danger">
+            Gender field is required
+          </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Calculate</button>
+    <button type="button" class="btn btn-secondary" (click)="onClear(f)">Clear</button>
+  </form>
+</div>
+
+<!-- Premium Output Details-->
+<div id="premiumOutput" class="well">
+  <h3 style="text-align:center">Premium Details</h3>
+  <div *ngIf="premiumData">
+    <div *ngIf="!premiumData.errorString; else premiumError">
+      <h5>PremiumAmount : {{ premiumData.premiumAmount }} </h5>
+    </div>
+  
+    <ng-template #premiumError>
+      <h5 class="alert alert-danger"> {{ premiumData.errorString }} </h5>
+    </ng-template>      
+  </div>
+</div>
